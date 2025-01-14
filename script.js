@@ -25,19 +25,27 @@ function playRound(humanChoice, computerChoice) {
     let computerScore = 0
     if (humanChoice === computerChoice){
     } else if ( humanChoice === "Rock" && computerChoice == "Paper") {
+        console.log("Paper beats Rock")
         computerScore++
     } else if (humanChoice === "Rock" && computerChoice === "Scissors") {
+        console.log("Rock beats Scissors")
         humanScore++
     } else if (humanChoice === "Paper" && computerChoice === "Rock") {
+        console.log("Paper beats Rock")
         humanScore++
     } else if (humanChoice === "Paper" && computerChoice === "Scissors") {
+        console.log("Scissors beats Paper")
         computerScore++
     } else if (humanChoice === "Scissors" && computerChoice === "Rock") {
+        console.log("Rock beats Scissors")
         computerScore++
     } else if (humanChoice === "Scissors" && computerChoice === "Paper") {
+        console.log("Scissors beats Paper")
         humanScore++
     }
-    if (humanScore > computerScore) {
+    if (humanScore === computerScore) {
+        return 3
+    } else if (humanScore > computerScore) {
         return 0
     } else {
         return 1
@@ -55,10 +63,16 @@ function playGame(playRound, getComputerChoice, getHumanChoice) {
         let computerSelection = getComputerChoice()
         let score =playRound(humanSelection, computerSelection)
         if (score === 0){
+            console.log("Round Won")
             humanScore++
-        } else {
+        } else if (score === 1) {
+            console.log("Round Lost")
             computerScore++
+        } else {
+            console.log("Draw")
         }
+        console.log(`Score ${humanScore}:${computerScore}`)
+        console.log("")
     }
     if (humanScore > computerScore) {
         console.log("You Win!")
