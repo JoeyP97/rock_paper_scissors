@@ -1,12 +1,30 @@
+const rock = document.querySelector("#rock")
+const paper = document.querySelector("#paper")
+const scissors = document.querySelector("#scissors")
+const announce = document.querySelector(".announce")
+let humanPoints = 0;
+let computerPoints= 0;
+const humanPointDisplay = document.querySelector(".humanScore")
+const computerPointDisplay = document.querySelector(".computerScore")
+humanPointDisplay.textContent = humanPoints
+computerPointDisplay.textContent = computerPoints
+const reset = document.querySelector(".reset")
 
+let winner;
 
-
-function getHumanChoice() {
+/* function getHumanChoice() {
     let userInput = prompt("Rock, Paper, or Scissors?")
     let humanChoice = userInput.charAt(0).toUpperCase() + userInput.slice(1).toLowerCase()
-    return humanChoice
-}
+    if (humanChoice !== "Rock" && humanChoice !== "Paper" && humanChoice !== "Scissors") {
+        alert("Invalid input")
+        getHumanChoice()
+    } else {
+        return humanChoice
+    }
+    
+} */
 
+    // declare function to get computers choice using random num generator
 function getComputerChoice() {
     let choice = Math.random()
     if (choice >= 0 && choice <= .33) {
@@ -18,68 +36,62 @@ function getComputerChoice() {
     }
 }
 
-let computerChoice = getComputerChoice()
+// set a variable to hold computer choice
+let computerChoice;
 
+// declare a function that plays one round of rock paper scissors
 function playRound(humanChoice, computerChoice) {
+    // checks if max score has been reached before playing through game
+   if (computerPoints === 5 || humanPoints === 5) {
+    announce.textContent = `Game Over! ${winner} won.`
+   } else { computerChoice = getComputerChoice()
     let humanScore = 0
     let computerScore = 0
-    if (humanChoice === computerChoice){
-    } else if ( humanChoice === "Rock" && computerChoice == "Paper") {
-        console.log("Paper beats Rock")
-        computerScore++
-    } else if (humanChoice === "Rock" && computerChoice === "Scissors") {
-        console.log("Rock beats Scissors")
+    if (humanChoice === computerChoice){ 
+    } else if (
+        (humanChoice === "Rock" && computerChoice === "Scissors") ||
+        (humanChoice === "Paper" && computerChoice === "Rock") ||
+        (humanChoice === "Scissors" && computerChoice === "Paper")
+    ) {
         humanScore++
-    } else if (humanChoice === "Paper" && computerChoice === "Rock") {
-        console.log("Paper beats Rock")
-        humanScore++
-    } else if (humanChoice === "Paper" && computerChoice === "Scissors") {
-        console.log("Scissors beats Paper")
-        computerScore++
-    } else if (humanChoice === "Scissors" && computerChoice === "Rock") {
-        console.log("Rock beats Scissors")
-        computerScore++
-    } else if (humanChoice === "Scissors" && computerChoice === "Paper") {
-        console.log("Scissors beats Paper")
-        humanScore++
+    } else {
+        computerScore ++
     }
     if (humanScore === computerScore) {
-        return 3
+        announce.textContent = "Draw"
     } else if (humanScore > computerScore) {
-        return 0
+        announce.textContent = `You Win! ${humanChoice} beats ${computerChoice}`
+        humanPoints++
     } else {
-        return 1
+        announce.textContent = `Computer Wins! ${computerChoice} beats ${humanChoice}`
+        computerPoints++
+    }}
+
+    humanPointDisplay.textContent = humanPoints
+    computerPointDisplay.textContent = computerPoints
+
+    if (humanPoints > computerPoints) {
+        winner = "You"
+    } else if (computerPoints > humanPoints) {
+        winner = "Computer"
     }
 }
 
-
-
-
-function playGame(playRound, getComputerChoice, getHumanChoice) {
-    let humanScore = 0
-    let computerScore = 0
-    for (let i = 0; i < 5; i++) {
-        let humanSelection = getHumanChoice()
-        let computerSelection = getComputerChoice()
-        let score =playRound(humanSelection, computerSelection)
-        if (score === 0){
-            console.log("Round Won")
-            humanScore++
-        } else if (score === 1) {
-            console.log("Round Lost")
-            computerScore++
-        } else {
-            console.log("Draw")
-        }
-        console.log(`Score ${humanScore}:${computerScore}`)
-        console.log("")
-    }
-    if (humanScore > computerScore) {
-        console.log("You Win!")
-    } else if( humanScore < computerScore){
-        console.log("Computer Wins!")
-    } else {
-        console.log("Draw!")
-    }
+// declare function to reset game
+function resetGame() {
+    humanPoints = 0
+    computerPoints = 0
+    humanPointDisplay.textContent = humanPoints
+    computerPointDisplay.textContent = computerPoints
+    announce.textContent = ''
 }
-playGame(playRound, getComputerChoice, getHumanChoice)
+
+//call resetGame function when reset button is clicked
+reset.addEventListener("click", () => {
+    resetGame()
+})
+
+// set all buttons to play round of game with selected button as input
+rock.addEventListener("click", () => {playRound("Rock", computerChoice)})
+paper.addEventListener("click", () => {playRound("Paper", computerChoice)})
+scissors.addEventListener("click", () => {playRound("Scissors", computerChoice)})

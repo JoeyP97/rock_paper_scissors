@@ -1,0 +1,62 @@
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.btnContainer {
+    display: flex;
+    gap: 10px;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+.choice {
+    flex: 1;
+    height: 40px;
+}
+
+#rock {
+    background-color: grey;
+}
+
+#scissors {
+    background-color: aqua;
+}
+
+.announce {
+    display: flex;
+    color: white;
+    justify-content: center;
+    margin: 20px;
+}
+
+.scores{
+    color: white;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.computerScores,
+.humanScores {
+    color: white;
+}
+
+.resetContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.gameContainer {
+    width: 300px;
+    margin-top: 100px;
+}
