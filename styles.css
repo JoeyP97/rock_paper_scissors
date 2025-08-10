@@ -60,3 +60,11 @@ body {
     width: 300px;
     margin-top: 100px;
 }
+
+.gameRecord {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
