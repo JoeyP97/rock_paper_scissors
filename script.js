@@ -9,6 +9,13 @@ const computerPointDisplay = document.querySelector(".computerScore")
 humanPointDisplay.textContent = humanPoints
 computerPointDisplay.textContent = computerPoints
 const reset = document.querySelector(".reset")
+let soundRock = document.querySelector("#rcksnd")
+let soundPaper = document.querySelector("#pprsnd")
+let soundScissors = document.querySelector("#szrsnd")
+let winSound = document.querySelector("#victory")
+let loserSound = document.querySelector("#loser")
+let round = document.querySelector(".round")
+let roundCounter = 0
 
 let winner;
 
@@ -44,7 +51,18 @@ function playRound(humanChoice, computerChoice) {
     // checks if max score has been reached before playing through game
    if (computerPoints === 5 || humanPoints === 5) {
     announce.textContent = `Game Over! ${winner} won.`
-   } else { computerChoice = getComputerChoice()
+    roundCounter = 0
+    round.textContent = ''
+    if (winner === "You") {
+        playWinner()
+    } else {
+        playLoser()
+        announce.textContent += '  YOU SUCK!'
+    }
+   } else { 
+    roundCounter += 1
+    round.textContent = `Round ${roundCounter}`
+    computerChoice = getComputerChoice()
     let humanScore = 0
     let computerScore = 0
     if (humanChoice === computerChoice){ 
@@ -95,3 +113,31 @@ reset.addEventListener("click", () => {
 rock.addEventListener("click", () => {playRound("Rock", computerChoice)})
 paper.addEventListener("click", () => {playRound("Paper", computerChoice)})
 scissors.addEventListener("click", () => {playRound("Scissors", computerChoice)})
+
+
+// set functions for audio tonplay on button click
+function playRock() {
+    soundRock.play()
+}
+
+function playPaper() {
+    soundPaper.play()
+}
+
+function playScissors() {
+    soundScissors.currentTime = 0
+    soundScissors.play()
+    setTimeout(function() {
+        soundScissors.pause();
+    }, 1000);
+}
+
+function playWinner() {
+    winSound.currentTime = 0
+    winSound.play()
+}
+
+function playLoser() {
+    loserSound.currentTime = 1.5
+    loserSound.play()
+}

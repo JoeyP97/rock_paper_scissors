@@ -1,41 +1,49 @@
 body {
-    background-color: pink;
+    background-color: rgb(64, 182, 255);
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Bubblegum Sans';
 }
 
 .header {
     display: flex;
     justify-content: center;
     color: white;
+    font-size: 35px;
 }
 
 .btnContainer {
     display: flex;
     gap: 10px;
-    margin-top: 50px;
     justify-content: center;
 }
 
 .choice {
     flex: 1;
-    height: 40px;
+    height: 230px;
+    border-radius: 500px;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.4);
 }
 
 #rock {
-    background-color: grey;
+    background-color: rgb(255, 188, 72);
 }
 
 #scissors {
-    background-color: aqua;
+    background-color: rgb(255, 75, 75);
+}
+
+#paper {
+    background-color: rgb(136, 238, 145);
 }
 
 .announce {
     display: flex;
-    color: white;
+    color: rgb(255, 255, 255);
     justify-content: center;
     margin: 20px;
+    font-size: 30px;
 }
 
 .scores{
@@ -57,7 +65,7 @@ body {
 }
 
 .gameContainer {
-    width: 300px;
+    width: 700px;
     margin-top: 100px;
 }
 
@@ -67,4 +75,22 @@ body {
     justify-content: center;
     align-items: center;
     color: white;
+}
+
+.rpsImg {
+    height: 100px;
+    width: 100px;
+}
+
+.roundContainer {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+    margin: 0px;
+    padding: 0px;
+}
+
+h1 {
+    margin: 0;
 }
