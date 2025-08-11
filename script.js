@@ -63,7 +63,7 @@ function playRound(humanChoice, computerChoice) {
         announce.textContent = `You Win! ${humanChoice} beats ${computerChoice}`
         humanPoints++
     } else {
-        announce.textContent = `Computer Wins! ${computerChoice} beats ${humanChoice}`
+        announce.textContent = `Computer Wins! ${computerChoice} beats ${humanChoice}` 
         computerPoints++
     }}
 
