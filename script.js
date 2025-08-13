@@ -22,6 +22,8 @@ let bestOf = 3
 
 let winner;
 
+round.textContent = "Welcome!"
+
 /* function getHumanChoice() {
     let userInput = prompt("Rock, Paper, or Scissors?")
     let humanChoice = userInput.charAt(0).toUpperCase() + userInput.slice(1).toLowerCase()
@@ -111,6 +113,8 @@ function resetGame() {
     rock.disabled = false
     paper.disabled = false
     scissors.disabled = false
+    roundCounter = 0
+    round.textContent = 'Welcome!'
 }
 
 //call resetGame function when reset button is clicked
@@ -124,7 +128,7 @@ paper.addEventListener("click", () => {playRound("Paper", computerChoice)})
 scissors.addEventListener("click", () => {playRound("Scissors", computerChoice)})
 
 
-// set functions for audio tonplay on button click
+// set functions for audio to play on button click
 function playRock() {
     soundRock.play()
 }
