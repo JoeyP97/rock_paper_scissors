@@ -17,6 +17,9 @@ let loserSound = document.querySelector("#loser")
 let round = document.querySelector(".round")
 let roundCounter = 0
 
+// Score to win game
+let bestOf = 3
+
 let winner;
 
 /* function getHumanChoice() {
@@ -83,7 +86,7 @@ function playRound(humanChoice, computerChoice) {
         winner = "Computer"
     }
     // checks if max score has been reached before playing through game
-    if (computerPoints === 5 || humanPoints === 5) {
+    if (computerPoints === bestOf || humanPoints === bestOf) {
     announce.textContent = `Game Over! ${winner} won.`
     roundCounter = 0
     round.textContent = 'Game Over'
