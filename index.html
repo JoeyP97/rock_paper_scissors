@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Bubblegum Sans' rel='stylesheet'>
+    
 </head>
 <body>
+    <audio  id="rcksnd" src="assets/loud-thud-45719.mp3"></audio>
+    <audio id="pprsnd" src="assets/paper-245786.mp3"></audio>
+    <audio id="szrsnd" src="assets/scissors-274671.mp3"></audio>
+    <audio id="victory" src="assets/applause-cheer-236786.mp3"></audio>
+    <audio id="loser" src="assets/sniffing-a-stinky-fart-95212.mp3"></audio>
     <div class="gameContainer">
        <Div class="header"><h1>Rock Paper Scissors</h1></Div>
+       <div class="roundContainer"><p class="round"></p></div>
         <div class="btnContainer">
-            <button class="choice" id="rock">Rock</button>
-            <button class="choice" id="paper">Paper</button>
-            <button class="choice" id="scissors">Scissors</button>
+            <button onclick="playRock()" class="choice" id="rock"><img class="rpsImg" src="assets/stone.png" alt="rock"></button>
+            <button onclick="playPaper()" class="choice" id="paper"><img class="rpsImg" src="assets/scroll.png" alt="paper"></button>
+            <button onclick="playScissors()" class="choice" id="scissors"><img class="rpsImg" src="assets/scissor.png" alt="scissors"></button>
         </div>
         <div class="announce"></div>
         <div class="scores">

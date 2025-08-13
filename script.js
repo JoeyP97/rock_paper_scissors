@@ -9,8 +9,20 @@ const computerPointDisplay = document.querySelector(".computerScore")
 humanPointDisplay.textContent = humanPoints
 computerPointDisplay.textContent = computerPoints
 const reset = document.querySelector(".reset")
+let soundRock = document.querySelector("#rcksnd")
+let soundPaper = document.querySelector("#pprsnd")
+let soundScissors = document.querySelector("#szrsnd")
+let winSound = document.querySelector("#victory")
+let loserSound = document.querySelector("#loser")
+let round = document.querySelector(".round")
+let roundCounter = 0
+
+// Score to win game
+let bestOf = 3
 
 let winner;
+
+round.textContent = "Welcome!"
 
 /* function getHumanChoice() {
     let userInput = prompt("Rock, Paper, or Scissors?")
@@ -41,10 +53,10 @@ let computerChoice;
 
 // declare a function that plays one round of rock paper scissors
 function playRound(humanChoice, computerChoice) {
-    // checks if max score has been reached before playing through game
-   if (computerPoints === 5 || humanPoints === 5) {
-    announce.textContent = `Game Over! ${winner} won.`
-   } else { computerChoice = getComputerChoice()
+    
+    roundCounter += 1
+    round.textContent = `Round ${roundCounter}`
+    computerChoice = getComputerChoice()
     let humanScore = 0
     let computerScore = 0
     if (humanChoice === computerChoice){ 
@@ -65,7 +77,7 @@ function playRound(humanChoice, computerChoice) {
     } else {
         announce.textContent = `Computer Wins! ${computerChoice} beats ${humanChoice}` 
         computerPoints++
-    }}
+    }
 
     humanPointDisplay.textContent = humanPoints
     computerPointDisplay.textContent = computerPoints
@@ -75,7 +87,21 @@ function playRound(humanChoice, computerChoice) {
     } else if (computerPoints > humanPoints) {
         winner = "Computer"
     }
-}
+    // checks if max score has been reached before playing through game
+    if (computerPoints === bestOf || humanPoints === bestOf) {
+    announce.textContent = `Game Over! ${winner} won.`
+    roundCounter = 0
+    round.textContent = 'Game Over'
+    if (winner === "You") {
+        playWinner()
+    } else {
+        playLoser()
+        announce.textContent += '  YOU SUCK!'
+    }
+    rock.disabled = true
+    paper.disabled = true
+    scissors.disabled = true
+}}
 
 // declare function to reset game
 function resetGame() {
@@ -84,6 +110,11 @@ function resetGame() {
     humanPointDisplay.textContent = humanPoints
     computerPointDisplay.textContent = computerPoints
     announce.textContent = ''
+    rock.disabled = false
+    paper.disabled = false
+    scissors.disabled = false
+    roundCounter = 0
+    round.textContent = 'Welcome!'
 }
 
 //call resetGame function when reset button is clicked
@@ -95,3 +126,31 @@ reset.addEventListener("click", () => {
 rock.addEventListener("click", () => {playRound("Rock", computerChoice)})
 paper.addEventListener("click", () => {playRound("Paper", computerChoice)})
 scissors.addEventListener("click", () => {playRound("Scissors", computerChoice)})
+
+
+// set functions for audio to play on button click
+function playRock() {
+    soundRock.play()
+}
+
+function playPaper() {
+    soundPaper.play()
+}
+
+function playScissors() {
+    soundScissors.currentTime = 0
+    soundScissors.play()
+    setTimeout(function() {
+        soundScissors.pause();
+    }, 1000);
+}
+
+function playWinner() {
+    winSound.currentTime = 0
+    winSound.play()
+}
+
+function playLoser() {
+    loserSound.currentTime = 1.5
+    loserSound.play()
+}
