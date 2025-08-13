@@ -48,18 +48,7 @@ let computerChoice;
 
 // declare a function that plays one round of rock paper scissors
 function playRound(humanChoice, computerChoice) {
-    // checks if max score has been reached before playing through game
-   if (computerPoints === 5 || humanPoints === 5) {
-    announce.textContent = `Game Over! ${winner} won.`
-    roundCounter = 0
-    round.textContent = ''
-    if (winner === "You") {
-        playWinner()
-    } else {
-        playLoser()
-        announce.textContent += '  YOU SUCK!'
-    }
-   } else { 
+    
     roundCounter += 1
     round.textContent = `Round ${roundCounter}`
     computerChoice = getComputerChoice()
@@ -83,7 +72,7 @@ function playRound(humanChoice, computerChoice) {
     } else {
         announce.textContent = `Computer Wins! ${computerChoice} beats ${humanChoice}`
         computerPoints++
-    }}
+    }
 
     humanPointDisplay.textContent = humanPoints
     computerPointDisplay.textContent = computerPoints
@@ -93,7 +82,21 @@ function playRound(humanChoice, computerChoice) {
     } else if (computerPoints > humanPoints) {
         winner = "Computer"
     }
-}
+    // checks if max score has been reached before playing through game
+    if (computerPoints === 5 || humanPoints === 5) {
+    announce.textContent = `Game Over! ${winner} won.`
+    roundCounter = 0
+    round.textContent = 'Game Over'
+    if (winner === "You") {
+        playWinner()
+    } else {
+        playLoser()
+        announce.textContent += '  YOU SUCK!'
+    }
+    rock.disabled = true
+    paper.disabled = true
+    scissors.disabled = true
+}}
 
 // declare function to reset game
 function resetGame() {
@@ -102,6 +105,9 @@ function resetGame() {
     humanPointDisplay.textContent = humanPoints
     computerPointDisplay.textContent = computerPoints
     announce.textContent = ''
+    rock.disabled = false
+    paper.disabled = false
+    scissors.disabled = false
 }
 
 //call resetGame function when reset button is clicked
