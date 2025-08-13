@@ -18,7 +18,7 @@ let round = document.querySelector(".round")
 let roundCounter = 0
 
 // Score to win game
-let bestOf = 3
+let bestOf = 100
 
 let winner;
 
@@ -115,6 +115,7 @@ function resetGame() {
     scissors.disabled = false
     roundCounter = 0
     round.textContent = 'Welcome!'
+    winSound.pause()
 }
 
 //call resetGame function when reset button is clicked
@@ -130,19 +131,21 @@ scissors.addEventListener("click", () => {playRound("Scissors", computerChoice)}
 
 // set functions for audio to play on button click
 function playRock() {
+    soundRock.currentTime = 0.1
     soundRock.play()
 }
 
 function playPaper() {
+    soundPaper.currentTime = .5
     soundPaper.play()
 }
 
 function playScissors() {
-    soundScissors.currentTime = 0
+    soundScissors.currentTime = 0.1
     soundScissors.play()
     setTimeout(function() {
         soundScissors.pause();
-    }, 1000);
+    }, 800);
 }
 
 function playWinner() {
