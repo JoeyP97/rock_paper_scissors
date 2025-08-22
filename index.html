@@ -9,11 +9,11 @@
     
 </head>
 <body>
-    <audio  id="rcksnd" src="assets/loud-thud-45719.mp3"></audio>
-    <audio id="pprsnd" src="assets/paper-245786.mp3"></audio>
-    <audio id="szrsnd" src="assets/scissors-274671.mp3"></audio>
-    <audio id="victory" src="assets/applause-cheer-236786.mp3"></audio>
-    <audio id="loser" src="assets/sniffing-a-stinky-fart-95212.mp3"></audio>
+    <audio  id="rcksnd" class="mutable" src="assets/loud-thud-45719.mp3"></audio>
+    <audio id="pprsnd" class="mutable" src="assets/paper-245786.mp3"></audio>
+    <audio id="szrsnd" class="mutable" src="assets/scissors-274671.mp3"></audio>
+    <audio id="victory" class="mutable" src="assets/applause-cheer-236786.mp3"></audio>
+    <audio id="loser" class="mutable" src="assets/sniffing-a-stinky-fart-95212.mp3"></audio>
     <div class="gameContainer">
        <Div class="header"><h1>Rock Paper Scissors</h1></Div>
        <div class="roundContainer"><p class="round"></p></div>
@@ -30,6 +30,8 @@
         <div class="resetContainer"><button class="reset">Reset Game</button></div> 
         <div class="gameRecord"><p>hi</p> </div>
     </div>
+    <div class="muteBtn"><button class="" id="mute" onclick="muted()">Mute</button></div>
+    
     
     
     <script src="script.js"></script>

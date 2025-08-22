@@ -8,6 +8,7 @@ const humanPointDisplay = document.querySelector(".humanScore")
 const computerPointDisplay = document.querySelector(".computerScore")
 humanPointDisplay.textContent = humanPoints
 computerPointDisplay.textContent = computerPoints
+let mute = document.querySelector("#mute")
 const reset = document.querySelector(".reset")
 let soundRock = document.querySelector("#rcksnd")
 let soundPaper = document.querySelector("#pprsnd")
@@ -15,10 +16,11 @@ let soundScissors = document.querySelector("#szrsnd")
 let winSound = document.querySelector("#victory")
 let loserSound = document.querySelector("#loser")
 let round = document.querySelector(".round")
+let mutable = document.querySelectorAll(".mutable")
 let roundCounter = 0
 
 // Score to win game
-let bestOf = 100
+let bestOf = 3
 
 let winner;
 
@@ -157,3 +159,31 @@ function playLoser() {
     loserSound.currentTime = 1.5
     loserSound.play()
 }
+
+function muted() {
+    for (i = 0; i < mutable.length; i++) {
+        if (mutable[i].classList.contains('muted')) {
+            mutable[i].classList.remove('muted')
+            mutable[i].volume = 1
+        } else {
+            mutable[i].classList.add('muted')
+            mutable[i].volume = 0
+        }
+    }
+}
+
+if (mute.classList.contains('muted')) {
+        mute.classList.remove('muted')
+        soundPaper.classList.remove('muted')
+        soundRock.classList.remove('muted')
+        soundScissors.classList.remove('muted')
+        winSound.classList.remove('muted')
+        loserSound.classList.remove('muted')
+    } else {
+        mute.classList.add('muted')
+        soundPaper.classList.add('muted')
+        soundRock.classList.add('muted')
+        soundScissors.classList.add('muted')
+        winSound.classList.add('muted')
+        loserSound.classList.add('muted')
+    }
